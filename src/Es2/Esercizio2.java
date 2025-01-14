@@ -3,36 +3,60 @@ package Es2;
 import java.util.*;
 
 public class Esercizio2 {
-    protected static Scanner sc = new Scanner(System.in);
+
     public static void main(String[] args) {
-        System.out.println("Quanti numeri vuoi?");
-        int numero = sc.nextInt();
-        Random generatoreNumeri = new Random();
-        List<Integer> numeri = new ArrayList<Integer>();
-        List<Integer> indicePari = new ArrayList<>();
-        List<Integer> indiceDispari = new ArrayList<>();
-        boolean pari;
-        for (int i = 0; i < numero; i++) {
-            numeri.add(generatoreNumeri.nextInt(0,101));
+
+        System.out.println("Lista numeri sono : ");
+       List<Integer> listanumeriRandom = randomNumber(10);
+       stampaLista(listanumeriRandom);
+        System.out.println("Lista numeri al contrario : ");
+       List<Integer> listaCompleta = listaInversa(listanumeriRandom);
+       stampaLista(listaCompleta);
+
+        System.out.println("Lista numeri indice pari : ");
+       stampaPariDispari(listanumeriRandom,true);
+
+        System.out.println("Lista numeri indice dispari : ");
+        stampaPariDispari(listanumeriRandom,false);
+
+
+
+    }
+    public static List<Integer> randomNumber(int num){
+        List<Integer> lista = new ArrayList<Integer>();
+        Random rand = new Random();
+        for (int i = 0; i < num; i++) {
+            lista.add(rand.nextInt(0,101));
+
         }
-
-        System.out.println(numeri);
-        Collections.sort(numeri);
-        System.out.println("Numeri messi random : " + numeri);
-        Collections.reverse(numeri);
-        System.out.println("Numeri in posizione inversa : " + numeri);
-
-        for (int i = 0; i < numeri.size(); i++) {
-            if(numero % 2 == 0 && i % 2 == 0){
-                indicePari.add(numeri.get(i));
-
-
-        } else if (numero % 2 != 0 && i % 2 != 0) {
-                indiceDispari.add(numeri.get(i));
+        Collections.sort(lista);
+        return lista;
+    }
+    public static List<Integer> listaInversa(List<Integer> lista){
+        List<Integer> listaCompleta = new ArrayList<Integer>(lista);
+        for (int i = lista.size() -1 ; i >= 0 ; i--) {
+            listaCompleta.add(lista.get(i));
+        }
+        return listaCompleta;
+    }
+    public static void stampaLista(List<Integer> lista){
+        for (Integer i : lista){
+            System.out.println(i);
+        }
+    }
+    public static void stampaPariDispari(List<Integer> lista , boolean b){
+        for (int i = 0; i < lista.size(); i++) {
+            if(b){
+            if(i % 2 == 0){
+                System.out.println("Posizione [" + i + "] Valore : " + lista.get(i));
             }
-        }
+            } else {
+                if( i % 2 != 0){
+                    System.out.println("Posizione [" + i + "] Valore : " + lista.get(i));
+                }
+            }
 
-        System.out.println("Numeri in indice pari : " + indicePari);
-       System.out.println("Numeri in indice dispari : " + indiceDispari);
+
+        }
     }
 }

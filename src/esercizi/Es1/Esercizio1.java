@@ -1,18 +1,16 @@
 package esercizi.Es1;
 
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class Esercizio1 {
     public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
        Set<String> parole = new HashSet<String>();
-       Set<String> paroleRipetute = new HashSet<String>();
+       List<String> paroleRipetute = new ArrayList<String>();
 
         System.out.println("Inserisci un numero che rappresenti il numero di elementi da inserire");
-        int numero = sc.nextInt();
+        int numero = Integer.parseInt(sc.next());
         System.out.println("Inserisci allora " + numero + " parole");
         for (int i = 0; i < numero; i++) {
           String parola = sc.next();
@@ -21,11 +19,15 @@ public class Esercizio1 {
           }
         }
         System.out.println("Le parole singole sono : ");
-        for (String singole : parole){
-            System.out.println(singole);
-        }
+        stampaparole(parole);
+
         System.out.println("Le parole duplicate sono : ");
-        for(String p : paroleRipetute){
+
+        stampaparole(paroleRipetute);
+
+    }
+    public static void stampaparole(Collection<String> lista){
+        for (String p : lista){
             System.out.println(p);
         }
     }
